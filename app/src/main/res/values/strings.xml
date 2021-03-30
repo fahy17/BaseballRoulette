@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BaseballRoulette</string>
+    <string name="startBtn">Start</string>
+    <string name="settingsBtn">Settings</string>
+    <string name="scoresBtn">Leaderboard</string>
+    <string name="titleTxt">Welcome to Baseball Roulette!</string>
+</resources>
