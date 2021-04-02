@@ -5,4 +5,6 @@
     <string name="scoresBtn">Leaderboard</string>
     <string name="titleTxt">Welcome to Baseball Roulette!</string>
     <string name="swingBtn">Swing!</string>
+    <string name="stopWheelBtn">Stop!</string>
+    <string name="startWheelBtn">Start!</string>
 </resources>
