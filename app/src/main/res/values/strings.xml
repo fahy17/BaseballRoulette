@@ -11,4 +11,5 @@
     <string name="awayScoreTxt"></string>
     <string name="homeLabel">HOME</string>
     <string name="awayLabel">AWAY</string>
+    <string name="outsLabel">OUTS</string>
 </resources>

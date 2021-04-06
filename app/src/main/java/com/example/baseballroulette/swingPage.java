@@ -20,12 +20,16 @@ import butterknife.OnClick;
 
 public class swingPage extends AppCompatActivity {
 
+
+
     @BindView(R.id.startWheelBtn)
     Button startWheelBtn;
     @BindView(R.id.wheelResult)
     TextView wheelResult;
     @BindView(R.id.wheelImg)
     ImageView wheelImg;
+
+    public static final String HIT_TYPE_EXTRA = "HIT_TYPE";
 
     private static final String[] wheelSections = {"Out", "Single", "Single", "Out", "Home Run", "Out",
             "Double", "Out", "Double", "Single", "Out", "Triple"};
@@ -66,6 +70,11 @@ public class swingPage extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 // we display the correct sector pointed by the triangle at the end of the rotate animation
                 wheelResult.setText(getSector(360 - (degree % 360)));
+                String hitType = (String) wheelResult.getText();
+
+                Intent intent = new Intent(getApplicationContext(),GamePage.class);
+                intent.putExtra(HIT_TYPE_EXTRA, hitType);
+                startActivity(intent);
 
             }
 
@@ -78,14 +87,6 @@ public class swingPage extends AppCompatActivity {
 
         // we start the animation
         wheelImg.startAnimation(rotateAnim);
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Intent intent = new Intent(getApplicationContext(),GamePage.class);
-        startActivity(intent);
 
     }
 
@@ -105,10 +106,7 @@ public class swingPage extends AppCompatActivity {
             }
 
             i++;
-            // now we can test our Android Roulette Game :)
-            // That's all !
-            // In the second part, you will learn how to add some bets on the table to play to the Roulette Game :)
-            // Subscribe and stay tuned !
+
 
         } while (text == null  &&  i < wheelSections.length);
 

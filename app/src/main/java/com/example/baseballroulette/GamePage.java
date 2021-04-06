@@ -10,14 +10,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.List;
+
 import butterknife.BindView;
 
 
 public class GamePage extends AppCompatActivity {
-
-    public int runs;
-    public int[] baserunners = new int[3];
-    public int outs;
 
     @BindView(R.id.swingBtn)
     Button swingBtn;
@@ -29,15 +28,32 @@ public class GamePage extends AppCompatActivity {
     TextView awayLabel;
     @BindView(R.id.awayScoreTxt)
     TextView awayScoreTxt;
+    @BindView(R.id.outsTxt)
+    TextView outsTxt;
     @BindView(R.id.field)
     ImageView field;
+    @BindView(R.id.baserunnerFirst)
+    ImageView baserunnerFirst;
+    @BindView(R.id.baserunnerSecond)
+    ImageView baserunnerSecond;
+    @BindView(R.id.baserunnerThird)
+    ImageView baserunnerThird;
 
 
+    private GameState currentState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_page);
+
+        currentState = GameState.getCurrentGameState();
+
+        String lastHitType = getIntent().getStringExtra(swingPage.HIT_TYPE_EXTRA);
+        if (lastHitType != null){
+            currentState.getHitResult(lastHitType);
+        }
 
         swingBtn = findViewById(R.id.swingBtn);
 
@@ -50,68 +66,9 @@ public class GamePage extends AppCompatActivity {
         });
     }
 
-    public void hitSingle(){
-        boolean runnerAdded = false;
-        for (int i = 0; i < baserunners.length; i++){
-            if(baserunners[i] > 0){
-                baserunners[i]++;
-                if (baserunners[i] > 3){
-                    addRun();
-                    baserunners[i] = 0;
-                }
-            } else if(runnerAdded == false && baserunners[i] == 0){
-                baserunners[i] = 1;
-                runnerAdded = true;
-            }
-        }
-    }
 
-    public void hitDouble(){
-        boolean runnerAdded = false;
-        for (int i = 0; i < baserunners.length; i++){
-            if(baserunners[i] > 0){
-                baserunners[i]+=2;
-                if (baserunners[i] > 3){
-                    addRun();
-                    baserunners[i] = 0;
-                }
-            } else if(runnerAdded == false && baserunners[i] == 0){
-                baserunners[i] = 2;
-                runnerAdded = true;
-            }
-        }
-    }
 
-    public void hitTriple(){
-        boolean runnerAdded = false;
-        for (int i = 0; i < baserunners.length; i++){
-            if(baserunners[i] > 0){
-                baserunners[i]+=3;
-                if (baserunners[i] > 3){
-                    addRun();
-                    baserunners[i] = 0;
-                }
-            } else if(runnerAdded == false && baserunners[i] == 0){
-                baserunners[i] = 3;
-                runnerAdded = true;
-            }
-        }
-    }
-
-    public void hitHomeRun(){
-        for (int i = 0; i < baserunners.length; i++){
-            if(baserunners[i] > 0){
-                baserunners[i]+=4;
-                if (baserunners[i] > 3){
-                    addRun();
-                    baserunners[i] = 0;
-                }
-            }
-            addRun();
-        }
-    }
-
-    public void addRun() {
+    /*public void addRun() {
         runs++;
         homeScoreTxt.setText(runs);
     }
@@ -121,8 +78,31 @@ public class GamePage extends AppCompatActivity {
         if (outs > 2){
             endGame();
         }
-    }
+    }*/
 
     private void endGame() {
+    }
+
+    private void updateField(){
+        homeScoreTxt.setText(currentState.runs);
+        outsTxt.setText(currentState.outs);
+        List baserunnerList = Arrays.asList(currentState.baserunners);
+
+        if(baserunnerList.contains(1)){
+            baserunnerFirst.setVisibility(View.VISIBLE);
+        } else{
+            baserunnerFirst.setVisibility(View.INVISIBLE);
+        }
+        if(baserunnerList.contains(2)){
+            baserunnerSecond.setVisibility(View.VISIBLE);
+        } else{
+            baserunnerSecond.setVisibility(View.INVISIBLE);
+        }
+        if(baserunnerList.contains(3)){
+            baserunnerThird.setVisibility(View.VISIBLE);
+        } else{
+            baserunnerThird.setVisibility(View.INVISIBLE);
+        }
+
     }
 }
