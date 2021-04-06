@@ -7,12 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button startBtn,settingsBtn,scoresBtn;
+    @BindView(R.id.startBtn)
+    Button startBtn;
+    @BindView(R.id.settingsBtn)
+    Button settingsBtn;
+    @BindView(R.id.scoresBtn)
+    Button scoresBtn;
+    @BindView(R.id.titleTxt)
     TextView titleTxt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -66,23 +66,27 @@ public class swingPage extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 // we display the correct sector pointed by the triangle at the end of the rotate animation
                 wheelResult.setText(getSector(360 - (degree % 360)));
-                try {
-                    Thread.sleep(2500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Intent intent = new Intent(getApplicationContext(),GamePage.class);
-                startActivity(intent);
+
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
 
             }
+
         });
 
         // we start the animation
         wheelImg.startAnimation(rotateAnim);
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Intent intent = new Intent(getApplicationContext(),GamePage.class);
+        startActivity(intent);
+
     }
 
     private String getSector(int degrees) {
