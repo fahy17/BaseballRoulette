@@ -6,6 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".GamePage">
 
+    <TextView
+        android:id="@+id/awayScoreTxt"
+        android:layout_width="78dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/awayScoreTxt"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/awayLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/awayLabel"
+        android:layout_width="71dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/awayLabel"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/awayScoreTxt"
+        app:layout_constraintStart_toEndOf="@+id/homeLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/swingBtn"
         android:layout_width="159dp"
@@ -31,5 +56,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/field" />
+
+    <TextView
+        android:id="@+id/homeScoreTxt"
+        android:layout_width="71dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/homeScoreTxt"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/homeLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/homeLabel"
+        android:layout_width="78dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginRight="71dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/homeLabel"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/awayLabel"
+        app:layout_constraintStart_toEndOf="@+id/homeScoreTxt"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

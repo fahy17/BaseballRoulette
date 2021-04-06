@@ -1,6 +1,8 @@
 package com.example.baseballroulette;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -64,6 +66,13 @@ public class swingPage extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 // we display the correct sector pointed by the triangle at the end of the rotate animation
                 wheelResult.setText(getSector(360 - (degree % 360)));
+                try {
+                    Thread.sleep(2500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(getApplicationContext(),GamePage.class);
+                startActivity(intent);
             }
 
             @Override

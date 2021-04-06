@@ -7,4 +7,8 @@
     <string name="swingBtn">Swing!</string>
     <string name="stopWheelBtn">Stop!</string>
     <string name="startWheelBtn">Start!</string>
+    <string name="homeScoreTxt"></string>
+    <string name="awayScoreTxt"></string>
+    <string name="homeLabel">HOME</string>
+    <string name="awayLabel">AWAY</string>
 </resources>
