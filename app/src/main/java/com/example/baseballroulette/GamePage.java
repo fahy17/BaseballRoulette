@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class GamePage extends AppCompatActivity {
@@ -47,12 +48,14 @@ public class GamePage extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_page);
+        ButterKnife.bind(this);
 
         currentState = GameState.getCurrentGameState();
 
         String lastHitType = getIntent().getStringExtra(swingPage.HIT_TYPE_EXTRA);
         if (lastHitType != null){
             currentState.getHitResult(lastHitType);
+            updateField();
         }
 
         swingBtn = findViewById(R.id.swingBtn);
@@ -84,8 +87,10 @@ public class GamePage extends AppCompatActivity {
     }
 
     private void updateField(){
-        homeScoreTxt.setText(currentState.runs);
-        outsTxt.setText(currentState.outs);
+
+        homeScoreTxt.setText(String.valueOf(currentState.runs));
+
+        outsTxt.setText(String.valueOf(currentState.outs));
         List baserunnerList = Arrays.asList(currentState.baserunners);
 
         if(baserunnerList.contains(1)){
