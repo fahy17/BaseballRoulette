@@ -15,4 +15,14 @@
     <string name="inningLabel">INNING</string>
     <string name="battingLabel">BATTING</string>
     <string name="hitTypeLabel">Last Swing:</string>
+    <string name="homeStatsLabel">Home Stats</string>
+    <string name="awayStatsLabel">Away Stats </string>
+    <string name="singlesLabel">Singles</string>
+    <string name="runsLabel">Runs Scored</string>
+    <string name="averageLabel">BA.</string>
+    <string name="doublesLabel">Doubles</string>
+    <string name="triplesLabel">Triples</string>
+    <string name="homerunsLabel">Home Runs</string>
+    <string name="playAgainBtn">Play Again!</string>
+    <string name="menuBtn">Back To Menu</string>
 </resources>

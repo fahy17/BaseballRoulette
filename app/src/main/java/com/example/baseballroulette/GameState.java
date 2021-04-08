@@ -5,6 +5,8 @@ import android.util.Log;
 import java.util.Arrays;
 
 public class GameState {
+
+    public static final int MAX_INNINGS = 1;
     public int homeNumRuns=0;
     public int awayNumRuns=0;
     public int[] baserunners =  {0,0,0};
@@ -13,7 +15,68 @@ public class GameState {
     public boolean homeBatting = false;
     public String lastHitType = "";
     public static GameState currentState = null;
+    public int[] homeHitTypes = new int[4];
+    public int[] awayHitTypes = new int[4];
+    public double homeABs;
+    public double awayABs;
+    public int homeHits;
+    public int awayHits;
+    public double homeBA;
+    public double awayBA;
+
+
+    public int[] getHomeHitTypes() {
+        return homeHitTypes;
+    }
+
+    public int[] getAwayHitTypes() {
+        return awayHitTypes;
+    }
+
+    public int getHomeHits() {
+        return homeHits;
+    }
+
+    public int getAwayHits() {
+        return awayHits;
+    }
+
+    public double getHomeBA() {
+        return homeBA;
+    }
+
+    public double getAwayBA() {
+        return awayBA;
+    }
+
+    public double getHomeABs() {
+        return homeABs;
+    }
+
+    public double getAwayABs() {
+        return awayABs;
+    }
+
     private GameState(){
+        homeNumRuns = 0;
+        awayNumRuns = 0;
+        outs= 0;
+        inning = 1;
+        homeBatting = false;
+        lastHitType = "";
+        homeABs = 0;
+        homeHits = 0;
+        homeBA = 0.0;
+        awayABs = 0;
+        awayHits = 0;
+        awayBA = 0.0;
+        for (int i = 0; i < baserunners.length; i++){
+            baserunners[i] = 0;
+        }
+        for (int i = 0; i < homeHitTypes.length; i++){
+            homeHitTypes[i] = 0;
+            awayHitTypes[i] = 0;
+        }
 
     }
 
@@ -120,19 +183,22 @@ public class GameState {
             baserunners[i] = 0;
         }
 
-        if (inning > 3){
-            endGame();
-        }
+
         if(homeBatting){
             homeBatting = false;
             inning++;
         } else {
             homeBatting = true;
         }
+        if (inning > MAX_INNINGS){
+            endGame();
+        }
     }
 
     public void endGame(){
-
+        homeBA = homeHits/homeABs;
+        awayBA = awayHits/awayABs;
+        currentState = new GameState();
     }
 
     public boolean isHomeBatting() {
@@ -160,23 +226,55 @@ public class GameState {
     }
 
     public void processHitType(String result){
+        if (homeBatting){
+            homeABs++;
+            if(!(result.equals("Out"))){
+                homeHits++;
+            }
+        } else {
+            awayABs++;
+            if(!(result.equals("Out"))){
+                awayHits++;
+            }
+        }
         lastHitType = result;
         if (result.equals("Single")){
             hitSingle();
             Log.d("getSingle", "Single received");
+            if(homeBatting){
+                homeHitTypes[0]++;
+            } else{
+                awayHitTypes[0]++;
+            }
         } else if (result.equals("Double")){
             hitDouble();
             Log.d("getDouble", "double received");
+            if(homeBatting){
+                homeHitTypes[1]++;
+            } else{
+                awayHitTypes[1]++;
+            }
         } else if (result.equals("Triple")){
             hitTriple();
             Log.d("getTriple", "triple received");
+            if(homeBatting){
+                homeHitTypes[2]++;
+            } else{
+                awayHitTypes[2]++;
+            }
         } else if (result.equals("Home Run")){
             hitHomeRun();
             Log.d("getHomeRun", "home run received");
+            if(homeBatting){
+                homeHitTypes[3]++;
+            } else{
+                awayHitTypes[3]++;
+            }
         } else if (result.equals("Out")){
             addOut();
             Log.d("getOut", "Out received");
         }
+
     }
 
     public boolean isRunnerOnBase(int baseNum){

@@ -57,6 +57,7 @@ public class GamePage extends AppCompatActivity {
 
 
     private GameState currentState;
+    public static final int MAX_INNINGS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,10 @@ public class GamePage extends AppCompatActivity {
             Log.d("hitType", lastHitType);
             currentState.processHitType(lastHitType);
             updateField();
+            if(currentState.getInning()>MAX_INNINGS){
+
+                endGame();
+            }
             Log.d("triedHitandUpdate", "hit type was not null");
         }
 
@@ -103,6 +108,18 @@ public class GamePage extends AppCompatActivity {
     }*/
 
     private void endGame() {
+        Log.d("END", "tried to open post game");
+        Intent intent = new Intent(getApplicationContext(),PostGame.class);
+
+        intent.putExtra("HOME_HITS", currentState.getHomeHits());
+        intent.putExtra("AWAY_HITS", currentState.getAwayHits());
+        intent.putExtra("HOME_ABS", currentState.getHomeABs());
+        intent.putExtra("AWAY_ABS", currentState.getAwayABs());
+        intent.putExtra("HOME_HIT_TYPES", currentState.getHomeHitTypes());
+        intent.putExtra("AWAY_HIT_TYPES", currentState.getAwayHitTypes());
+        intent.putExtra("HOME_RUNS", currentState.getHomeNumRuns());
+        intent.putExtra("AWAY_RUNS", currentState.getAwayNumRuns());
+        startActivity(intent);
     }
 
     private void updateField(){
