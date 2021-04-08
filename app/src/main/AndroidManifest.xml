@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BaseballRoulette">
-        <activity android:name=".swingPage"></activity>
+        <activity android:name=".SwingPage"></activity>
         <activity android:name=".GamePage" />
         <activity android:name=".MainActivity">
             <intent-filter>
