@@ -22,11 +22,13 @@
         android:id="@+id/startBtn"
         android:layout_width="158dp"
         android:layout_height="80dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginBottom="551dp"
         android:text="@string/startBtn"
         app:backgroundTint="#7E0000"
-        app:layout_constraintBottom_toTopOf="@+id/settingsBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
 
@@ -50,30 +52,5 @@
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/settingsBtn"
-        android:layout_width="162dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="44dp"
-        android:text="@string/settingsBtn"
-        app:backgroundTint="#7E0000"
-        app:layout_constraintBottom_toTopOf="@+id/scoresBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startBtn" />
-
-    <Button
-        android:id="@+id/scoresBtn"
-        android:layout_width="167dp"
-        android:layout_height="79dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginBottom="120dp"
-        android:text="@string/scoresBtn"
-        app:backgroundTint="#7E0000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settingsBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

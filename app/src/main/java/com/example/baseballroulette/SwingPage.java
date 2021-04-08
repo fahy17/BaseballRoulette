@@ -20,20 +20,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class swingPage extends AppCompatActivity {
+public class SwingPage extends AppCompatActivity {
 
+
+    //For this portion of the app i followed a tutorial from Sylvain Saurel on youtube here, https://www.youtube.com/watch?v=rqU4rTU-ZS0
+    //with the step by step tutorial also available on his blog site here, https://www.ssaurel.com/blog/develop-a-roulette-game-for-android/
+    //The spin and getSector methods were fully developed by him , in modified its original version to accommodate the spin wheel that i created.
+    //His was created for a full roulette wheel, whereas my wheel onl has 12 sections and baseball results, so
+    //the appropriate changes were made to his original source code.
 
 
     @BindView(R.id.startWheelBtn)
     Button startWheelBtn;
-    @BindView(R.id.stopWheelBtn)
-    Button stopWheelBtn;
+    //@BindView(R.id.stopWheelBtn)
+    //Button stopWheelBtn;
     @BindView(R.id.wheelResult)
     TextView wheelResult;
     @BindView(R.id.wheelImg)
     ImageView wheelImg;
-    @BindView(R.id.backgroundImg)
-    ImageView backgroundImg;
 
     public static final String HIT_TYPE_EXTRA = "HIT_TYPE";
 
@@ -111,10 +115,10 @@ public class swingPage extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.stopWheelBtn)
+    /*@OnClick(R.id.stopWheelBtn)
     public void stopWheel(){
         stopPressed = true;
-    }
+    }*/
 
 
     private String getSector(int degrees) {

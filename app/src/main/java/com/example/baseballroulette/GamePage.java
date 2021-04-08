@@ -16,6 +16,14 @@ import butterknife.ButterKnife;
 
 public class GamePage extends AppCompatActivity {
 
+
+
+    //I received help from Dr. Stonedahl in this section in moving around methods and values to better
+    //fit the flow of my app as well as improve functionality.
+
+    //I received the baseball field image here, https://creazilla.com/nodes/76536-baseball-diamond-clipart for recreational use.
+    //I received the baseball player running image here, http://www.clipartpanda.com/clipart_images/a-player-running-bases-43840251 for recreational use.
+
     @BindView(R.id.swingBtn)
     Button swingBtn;
     @BindView(R.id.homeLabel)
@@ -61,7 +69,7 @@ public class GamePage extends AppCompatActivity {
         currentState = GameState.getCurrentGameState();
         updateField();
 
-        String lastHitType = getIntent().getStringExtra(swingPage.HIT_TYPE_EXTRA);
+        String lastHitType = getIntent().getStringExtra(SwingPage.HIT_TYPE_EXTRA);
         if (lastHitType != null){
             Log.d("hitType", lastHitType);
             currentState.processHitType(lastHitType);
@@ -74,7 +82,7 @@ public class GamePage extends AppCompatActivity {
         swingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),swingPage.class);
+                Intent intent = new Intent(getApplicationContext(),SwingPage.class);
                 startActivity(intent);
             }
         });

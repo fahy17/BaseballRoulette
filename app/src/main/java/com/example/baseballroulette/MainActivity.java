@@ -17,13 +17,13 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.startBtn)
     Button startBtn;
-    @BindView(R.id.settingsBtn)
-    Button settingsBtn;
-    @BindView(R.id.scoresBtn)
-    Button scoresBtn;
     @BindView(R.id.titleTxt)
     TextView titleTxt;
 
+
+    //I received the background image of the baseball in a field from, https://unsplash.com/wallpapers/sports/baseball
+    //I do not intend to distribute or profit from this app
+    //I received significant help from Dr. Stonedahl in the debugging process and some elements of refractoring my code
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         startBtn = findViewById(R.id.startBtn);
-        settingsBtn = findViewById(R.id.settingsBtn);
-        scoresBtn = findViewById(R.id.scoresBtn);
         titleTxt = findViewById(R.id.titleTxt);
 
         startBtn.setOnClickListener(new View.OnClickListener() {

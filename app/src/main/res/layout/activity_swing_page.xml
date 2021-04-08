@@ -4,21 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B5B5B5"
     tools:context=".swingPage">
-
-    <ImageView
-        android:id="@+id/backgroundImg"
-        android:layout_width="1084dp"
-        android:layout_height="1155dp"
-        android:scaleX="10"
-        android:scaleY="10"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="#393939"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
         android:id="@+id/wheelResult"
@@ -40,24 +27,11 @@
         android:layout_height="74dp"
         android:layout_marginTop="16dp"
         android:text="@string/startWheelBtn"
-        app:backgroundTint="#7E0000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/stopWheelBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wheelImg" />
-
-    <Button
-        android:id="@+id/stopWheelBtn"
-        android:layout_width="151dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="18dp"
-        android:text="@string/stopWheelBtn"
+        android:textSize="18sp"
         app:backgroundTint="#7E0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/startWheelBtn"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wheelImg" />
 
     <ImageView
