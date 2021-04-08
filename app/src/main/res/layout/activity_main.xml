@@ -6,38 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="1527dp"
+        android:layout_height="1513dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.442"
+        app:srcCompat="@drawable/background" />
+
     <Button
         android:id="@+id/startBtn"
-        android:layout_width="174dp"
-        android:layout_height="57dp"
+        android:layout_width="158dp"
+        android:layout_height="80dp"
         android:layout_marginTop="200dp"
         android:text="@string/startBtn"
+        app:backgroundTint="#7E0000"
+        app:layout_constraintBottom_toTopOf="@+id/settingsBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
 
     <TextView
         android:id="@+id/titleTxt"
-        android:layout_width="166dp"
-        android:layout_height="100dp"
+        android:layout_width="237dp"
+        android:layout_height="185dp"
         android:layout_marginStart="122dp"
         android:layout_marginLeft="122dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="123dp"
         android:layout_marginRight="123dp"
+        android:background="#717171"
+        android:gravity="center"
         android:text="@string/titleTxt"
-        android:textSize="24sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/settingsBtn"
-        android:layout_width="168dp"
-        android:layout_height="69dp"
+        android:layout_width="162dp"
+        android:layout_height="76dp"
         android:layout_marginTop="44dp"
         android:text="@string/settingsBtn"
+        app:backgroundTint="#7E0000"
+        app:layout_constraintBottom_toTopOf="@+id/scoresBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startBtn" />
@@ -45,10 +66,11 @@
     <Button
         android:id="@+id/scoresBtn"
         android:layout_width="167dp"
-        android:layout_height="58dp"
+        android:layout_height="79dp"
         android:layout_marginTop="44dp"
         android:layout_marginBottom="120dp"
         android:text="@string/scoresBtn"
+        app:backgroundTint="#7E0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

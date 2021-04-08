@@ -12,4 +12,7 @@
     <string name="homeLabel">HOME</string>
     <string name="awayLabel">AWAY</string>
     <string name="outsLabel">OUTS</string>
+    <string name="inningLabel">INNING</string>
+    <string name="battingLabel">BATTING</string>
+    <string name="hitTypeLabel">Last Swing:</string>
 </resources>

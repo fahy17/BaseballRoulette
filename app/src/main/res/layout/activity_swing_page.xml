@@ -6,12 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".swingPage">
 
+    <ImageView
+        android:id="@+id/backgroundImg"
+        android:layout_width="1084dp"
+        android:layout_height="1155dp"
+        android:scaleX="10"
+        android:scaleY="10"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#393939"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
     <TextView
         android:id="@+id/wheelResult"
         android:layout_width="257dp"
         android:layout_height="69dp"
+        android:gravity="center"
         android:text=""
         android:textAllCaps="false"
+        android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/arrowImg"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +40,7 @@
         android:layout_height="74dp"
         android:layout_marginTop="16dp"
         android:text="@string/startWheelBtn"
+        app:backgroundTint="#7E0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/stopWheelBtn"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +54,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="18dp"
         android:text="@string/stopWheelBtn"
+        app:backgroundTint="#7E0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/startWheelBtn"
@@ -62,13 +80,17 @@
         android:layout_width="57dp"
         android:layout_height="57dp"
         android:layout_marginTop="90dp"
+        android:rotation="341"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/wheelImg"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/arrow"
         tools:src="@drawable/arrow"
         tools:srcCompat="@drawable/arrow"
         tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

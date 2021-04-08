@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +28,16 @@ public class GamePage extends AppCompatActivity {
     TextView awayScoreTxt;
     @BindView(R.id.outsTxt)
     TextView outsTxt;
+    @BindView(R.id.inningLabel)
+    TextView inningLabel;
+    @BindView(R.id.inningNumTxt)
+    TextView inningNumTxt;
+    @BindView(R.id.homeBattingLabel)
+    TextView homeBattingLabel;
+    @BindView(R.id.awayBattingLabel)
+    TextView awayBattingLabel;
+    @BindView(R.id.hitTypeTxt)
+    TextView hitTypeTxt;
     @BindView(R.id.field)
     ImageView field;
     @BindView(R.id.baserunnerFirst)
@@ -50,12 +57,16 @@ public class GamePage extends AppCompatActivity {
         setContentView(R.layout.activity_game_page);
         ButterKnife.bind(this);
 
+
         currentState = GameState.getCurrentGameState();
+        updateField();
 
         String lastHitType = getIntent().getStringExtra(swingPage.HIT_TYPE_EXTRA);
         if (lastHitType != null){
-            currentState.getHitResult(lastHitType);
+            Log.d("hitType", lastHitType);
+            currentState.processHitType(lastHitType);
             updateField();
+            Log.d("triedHitandUpdate", "hit type was not null");
         }
 
         swingBtn = findViewById(R.id.swingBtn);
@@ -88,23 +99,44 @@ public class GamePage extends AppCompatActivity {
 
     private void updateField(){
 
-        homeScoreTxt.setText(String.valueOf(currentState.runs));
 
-        outsTxt.setText(String.valueOf(currentState.outs));
-        List baserunnerList = Arrays.asList(currentState.baserunners);
+        Log.d("UpdateField", "Update Field is running");
 
-        if(baserunnerList.contains(1)){
+
+        homeScoreTxt.setText(String.valueOf(currentState.getHomeNumRuns()));
+        awayScoreTxt.setText(String.valueOf(currentState.getAwayNumRuns()));
+        inningNumTxt.setText(String.valueOf(currentState.getInning()));
+        outsTxt.setText(String.valueOf(currentState.getOuts()));
+        hitTypeTxt.setText(currentState.getLastHitType());
+
+        if(currentState.isHomeBatting()){
+            homeBattingLabel.setVisibility(View.VISIBLE);
+            awayBattingLabel.setVisibility(View.INVISIBLE);
+        } else {
+            homeBattingLabel.setVisibility(View.INVISIBLE);
+            awayBattingLabel.setVisibility(View.VISIBLE);
+        }
+
+        Log.d("out number", String.valueOf(currentState.getOuts()));
+        Log.d("home runs number", String.valueOf(currentState.getHomeNumRuns()));
+        Log.d("away runs number", String.valueOf(currentState.getAwayNumRuns()));
+
+
+        if(currentState.isRunnerOnBase(1)){
             baserunnerFirst.setVisibility(View.VISIBLE);
+            Log.d("Single", "Runner on First");
         } else{
             baserunnerFirst.setVisibility(View.INVISIBLE);
         }
-        if(baserunnerList.contains(2)){
+        if(currentState.isRunnerOnBase(2)){
             baserunnerSecond.setVisibility(View.VISIBLE);
+            Log.d("Double", "Runner on second");
         } else{
             baserunnerSecond.setVisibility(View.INVISIBLE);
         }
-        if(baserunnerList.contains(3)){
+        if(currentState.isRunnerOnBase(3)){
             baserunnerThird.setVisibility(View.VISIBLE);
+            Log.d("Triple", "runner on third");
         } else{
             baserunnerThird.setVisibility(View.INVISIBLE);
         }

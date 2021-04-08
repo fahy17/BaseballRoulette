@@ -1,9 +1,17 @@
 package com.example.baseballroulette;
 
+import android.util.Log;
+
+import java.util.Arrays;
+
 public class GameState {
-    public int runs=0;
+    public int homeNumRuns=0;
+    public int awayNumRuns=0;
     public int[] baserunners =  {0,0,0};
     public int outs=0;
+    public int inning = 1;
+    public boolean homeBatting = false;
+    public String lastHitType = "";
     public static GameState currentState = null;
     private GameState(){
 
@@ -25,11 +33,14 @@ public class GameState {
                     addRun();
                     baserunners[i] = 0;
                 }
-            } else if(runnerAdded == false && baserunners[i] == 0){
+            }
+            if(runnerAdded == false && baserunners[i] == 0){
                 baserunners[i] = 1;
                 runnerAdded = true;
             }
         }
+        Log.d("hitSingle", "Single Recorded");
+        Log.d("Baserunners", Arrays.toString(baserunners));
     }
 
     public void hitDouble(){
@@ -41,11 +52,14 @@ public class GameState {
                     addRun();
                     baserunners[i] = 0;
                 }
-            } else if(runnerAdded == false && baserunners[i] == 0){
+            }
+            if(runnerAdded == false && baserunners[i] == 0){
                 baserunners[i] = 2;
                 runnerAdded = true;
             }
         }
+        Log.d("hitDouble", "Double Recorded");
+        Log.d("Baserunners", Arrays.toString(baserunners));
     }
 
     public void hitTriple(){
@@ -57,11 +71,14 @@ public class GameState {
                     addRun();
                     baserunners[i] = 0;
                 }
-            } else if(runnerAdded == false && baserunners[i] == 0){
+            }
+            if(runnerAdded == false && baserunners[i] == 0){
                 baserunners[i] = 3;
                 runnerAdded = true;
             }
         }
+        Log.d("hitTriple", "Triple Recorded");
+        Log.d("Baserunners", Arrays.toString(baserunners));
     }
 
     public void hitHomeRun(){
@@ -73,41 +90,101 @@ public class GameState {
                     baserunners[i] = 0;
                 }
             }
-            addRun();
         }
+        addRun();
+        Log.d("hitHomeRun", "Home run Recorded");
+        Log.d("Baserunners", Arrays.toString(baserunners));
     }
 
     public void addRun() {
-        runs++;
+        if (homeBatting){
+            homeNumRuns++;
+        } else {
+            awayNumRuns++;
+        }
         //homeScoreTxt.setText(runs);
+        Log.d("addRun", "run added");
     }
 
     public void addOut(){
         outs++;
-        /*if (outs > 2){
-            endGame();
-        }*/
+        if (outs > 2){
+            changeInning();
+            outs = 0;
+        }
     }
 
-    public int getRuns() {
-        return runs;
+    public void changeInning(){
+
+        for (int i = 0; i < baserunners.length; i++){
+            baserunners[i] = 0;
+        }
+
+        if (inning > 3){
+            endGame();
+        }
+        if(homeBatting){
+            homeBatting = false;
+            inning++;
+        } else {
+            homeBatting = true;
+        }
+    }
+
+    public void endGame(){
+
+    }
+
+    public boolean isHomeBatting() {
+        return homeBatting;
+    }
+
+    public int getHomeNumRuns() {
+        return homeNumRuns;
+    }
+
+    public int getAwayNumRuns() {
+        return awayNumRuns;
     }
 
     public int getOuts() {
         return outs;
     }
 
-    public void getHitResult(String result){
-        if (result == "Single"){
+    public int getInning() {
+        return inning;
+    }
+
+    public String getLastHitType(){
+        return lastHitType;
+    }
+
+    public void processHitType(String result){
+        lastHitType = result;
+        if (result.equals("Single")){
             hitSingle();
-        } else if (result == "Double"){
+            Log.d("getSingle", "Single received");
+        } else if (result.equals("Double")){
             hitDouble();
-        } else if (result == "Triple"){
+            Log.d("getDouble", "double received");
+        } else if (result.equals("Triple")){
             hitTriple();
-        } else if (result == "Home Run"){
+            Log.d("getTriple", "triple received");
+        } else if (result.equals("Home Run")){
             hitHomeRun();
-        } else if (result == "Out"){
+            Log.d("getHomeRun", "home run received");
+        } else if (result.equals("Out")){
             addOut();
+            Log.d("getOut", "Out received");
         }
+    }
+
+    public boolean isRunnerOnBase(int baseNum){
+        for (int index = 0; index < baserunners.length; index++){
+            if (baseNum == baserunners[index]){
+                return true;
+            }
+        }
+        return false;
     }
 }

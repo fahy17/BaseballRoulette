@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -24,15 +26,21 @@ public class swingPage extends AppCompatActivity {
 
     @BindView(R.id.startWheelBtn)
     Button startWheelBtn;
+    @BindView(R.id.stopWheelBtn)
+    Button stopWheelBtn;
     @BindView(R.id.wheelResult)
     TextView wheelResult;
     @BindView(R.id.wheelImg)
     ImageView wheelImg;
+    @BindView(R.id.backgroundImg)
+    ImageView backgroundImg;
 
     public static final String HIT_TYPE_EXTRA = "HIT_TYPE";
 
     private static final String[] wheelSections = {"Out", "Single", "Single", "Out", "Home Run", "Out",
             "Double", "Out", "Double", "Single", "Out", "Triple"};
+
+    public boolean stopPressed;
 
 
     private static final Random RAND_SPIN = new Random();
@@ -46,13 +54,15 @@ public class swingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swing_page);
         ButterKnife.bind(this);
+        stopPressed = false;
     }
 
     @OnClick(R.id.startWheelBtn)
     public void spin(View v) {
         degreeOld = degree % 360;
         // we calculate random angle for rotation of our wheel and add 1080 so the wheel spins at least 3 times
-        degree = RAND_SPIN.nextInt(360) + 1080;
+        degree = RAND_SPIN.nextInt(360) + 1440;
+        //degree = 0;
         // rotation effect on the center of the wheel
         RotateAnimation rotateAnim = new RotateAnimation(degreeOld, degree,
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
@@ -72,9 +82,16 @@ public class swingPage extends AppCompatActivity {
                 wheelResult.setText(getSector(360 - (degree % 360)));
                 String hitType = (String) wheelResult.getText();
 
-                Intent intent = new Intent(getApplicationContext(),GamePage.class);
-                intent.putExtra(HIT_TYPE_EXTRA, hitType);
-                startActivity(intent);
+                final Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(),GamePage.class);
+                        intent.putExtra(HIT_TYPE_EXTRA, hitType);
+                        startActivity(intent);
+                    }
+                }, 2000);
+
 
             }
 
@@ -85,10 +102,20 @@ public class swingPage extends AppCompatActivity {
 
         });
 
+        if (stopPressed){
+            rotateAnim.cancel();
+        }
+
         // we start the animation
         wheelImg.startAnimation(rotateAnim);
 
     }
+
+    @OnClick(R.id.stopWheelBtn)
+    public void stopWheel(){
+        stopPressed = true;
+    }
+
 
     private String getSector(int degrees) {
         int i = 0;
